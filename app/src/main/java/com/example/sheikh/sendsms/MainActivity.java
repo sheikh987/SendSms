@@ -23,10 +23,13 @@ public class MainActivity extends AppCompatActivity {
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         //Add Fragment Here
-        adapter.addFragment(new FragmentContacts(), "CONTACTS");
-        adapter.addFragment(new FragmentOtp(), "OTP");
+        adapter.addFragment(new FragmentContacts(), "");
+        adapter.addFragment(new FragmentOtp(), "");
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
+
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_contacts_black_24dp);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_message_black_24dp);
     }
 
 }
