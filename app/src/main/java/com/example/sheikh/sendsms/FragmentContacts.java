@@ -64,8 +64,9 @@ public class FragmentContacts extends android.support.v4.app.Fragment{
                 JSONObject object = array.getJSONObject(i);
                 String firstName = object.getString("firstName");
                 String lastname = object.getString("lastName");
+                String phoneNumber = object.getString("phoneNumber");
                 Log.i("firstName: ",firstName);
-                lstContact.add(new Contact(firstName,lastname));
+                lstContact.add(new Contact(firstName,lastname,phoneNumber));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
