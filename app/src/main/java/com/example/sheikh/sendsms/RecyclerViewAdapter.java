@@ -2,6 +2,7 @@ package com.example.sheikh.sendsms;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -59,7 +60,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 dialogButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(mContext, "i am"+ mData.get(vHolder.getAdapterPosition()).getPhoneNumber(),Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(mContext, "i am"+ mData.get(vHolder.getAdapterPosition()).getPhoneNumber(),Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(mContext.getApplicationContext(),SendMessage.class);
+                        intent.putExtra("phoneNumber",mData.get(vHolder.getAdapterPosition()).getPhoneNumber());
+                        mContext.startActivity(intent);
                     }
                 });
                 myDialog.show();
