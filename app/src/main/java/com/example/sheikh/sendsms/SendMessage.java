@@ -1,6 +1,8 @@
 package com.example.sheikh.sendsms;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.annotation.Nullable;
@@ -12,10 +14,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
 
 public class SendMessage extends AppCompatActivity {
@@ -30,10 +38,12 @@ public class SendMessage extends AppCompatActivity {
 
         Intent intent = getIntent();
         final String mobileString = intent.getExtras().getString("phoneNumber");
+        final String nameString = intent.getExtras().getString("name");
 
 
         Random generator = new Random();
         int randInteger = 100000 + generator.nextInt(900000);
+        final String otpString = String.valueOf(randInteger);
         final String randomString = "Hi. Your OTP is " + String.valueOf(randInteger);
 
         btn_send = (Button) findViewById(R.id.btn_send);
@@ -65,6 +75,43 @@ public class SendMessage extends AppCompatActivity {
                     while ((line = rd.readLine()) != null) {
                         Toast.makeText(SendMessage.this, line, Toast.LENGTH_SHORT).show();
                         Log.i("check",line);
+
+                        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                        Date date = new Date();
+                        String dateString = formatter.format(date);
+
+
+                        JSONObject person = new JSONObject();
+                        try {
+                            person.put("otp", otpString);
+                            person.put("name", nameString);
+                            person.put("date",dateString);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        SharedPreferences sharedPreferences = getSharedPreferences("prefId", Context.MODE_PRIVATE);
+                        String text = sharedPreferences.getString("jsonArray", null);
+                        if (text==null){
+
+                            JSONArray personArray = new JSONArray();
+                            personArray.put(person);
+                            SharedPreferences.Editor editorLogin = sharedPreferences.edit();
+                            editorLogin.putString("jsonArray",personArray.toString());
+                            editorLogin.apply();
+                            Log.i("jsonTEst",personArray.toString());
+                        } else {
+                            JSONArray personArray = new JSONArray(text);
+                            personArray.put(person);
+                            SharedPreferences.Editor editorLogin = sharedPreferences.edit();
+                            editorLogin.putString("jsonArray",personArray.toString());
+                            editorLogin.apply();
+                            Log.i("jsonTEst",personArray.toString());
+                        }
+
+
+
                     }
                     rd.close();
 

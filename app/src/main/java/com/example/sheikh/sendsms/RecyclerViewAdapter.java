@@ -51,7 +51,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 final TextView dialogPhoneNumber = (TextView) myDialog.findViewById(R.id.dialog_phonenumber);
                 String name1 = mData.get(vHolder.getAdapterPosition()).getFirstName();
                 String name2 = mData.get(vHolder.getAdapterPosition()).getLastName();
-                String name = name1 + "  " + name2;
+                final String name = name1 + "  " + name2;
 
                 dialogName.setText(name);
                 dialogPhoneNumber.setText(mData.get(vHolder.getAdapterPosition()).getPhoneNumber());
@@ -64,6 +64,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
                         Intent intent = new Intent(mContext.getApplicationContext(),SendMessage.class);
                         intent.putExtra("phoneNumber",mData.get(vHolder.getAdapterPosition()).getPhoneNumber());
+                        intent.putExtra("name",name);
                         mContext.startActivity(intent);
                     }
                 });
