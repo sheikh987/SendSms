@@ -101,6 +101,8 @@ public class SendMessage extends AppCompatActivity {
                             editorLogin.putString("jsonArray",personArray.toString());
                             editorLogin.apply();
                             Log.i("jsonTEst",personArray.toString());
+                            startActivity(new Intent(SendMessage.this,MainActivity.class));
+                            finish();
                         } else {
                             JSONArray personArray = new JSONArray(text);
                             personArray.put(person);
@@ -108,6 +110,8 @@ public class SendMessage extends AppCompatActivity {
                             editorLogin.putString("jsonArray",personArray.toString());
                             editorLogin.apply();
                             Log.i("jsonTEst",personArray.toString());
+                            startActivity(new Intent(SendMessage.this,MainActivity.class));
+                            finish();
                         }
 
 
@@ -125,6 +129,7 @@ public class SendMessage extends AppCompatActivity {
 
         StrictMode.ThreadPolicy st = new StrictMode.ThreadPolicy.Builder().build();
         StrictMode.setThreadPolicy(st);
+
 
     }
 }
