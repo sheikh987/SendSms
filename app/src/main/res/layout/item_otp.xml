@@ -14,8 +14,8 @@
         android:id="@+id/view_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
         android:textSize="20sp"
         tools:text="Name " />
 
@@ -23,16 +23,16 @@
         android:id="@+id/view_otp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
         android:textSize="20sp"
         tools:text="OTP " />
     <TextView
         android:id="@+id/view_date_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
         android:textSize="20sp"
         tools:text="DateTime " />
 
